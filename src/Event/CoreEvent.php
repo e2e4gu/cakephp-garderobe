@@ -11,12 +11,12 @@
  */
 namespace Garderobe\Event;
 
-use Cake\Event\EventListener;
+use Cake\Event\EventListenerInterface;
 use Cake\Utility\Inflector;
 use Cake\Core\Configure;
 use Cake\Log\Log;
 
-class CoreEvent implements EventListener {
+class CoreEvent implements EventListenerInterface {
 
     public function implementedEvents() {
         return array(
