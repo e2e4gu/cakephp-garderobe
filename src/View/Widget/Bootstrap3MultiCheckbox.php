@@ -11,14 +11,14 @@
  */
 namespace Garderobe\View\Widget;
 
-use Cake\View\Widget\MultiCheckbox;
+use Cake\View\Widget\MultiCheckboxWidget;
 use Cake\View\Form\ContextInterface;
 
 /**
  * Input widget class for generating multiple checkboxes.
  *
  */
-class Bootstrap3MultiCheckbox extends MultiCheckbox {
+class Bootstrap3MultiCheckbox extends MultiCheckboxWidget {
 
 /**
  * Render multi-checkbox widget.

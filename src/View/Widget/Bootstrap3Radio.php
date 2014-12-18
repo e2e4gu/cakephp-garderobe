@@ -11,7 +11,7 @@
  */
 namespace Garderobe\View\Widget;
 
-use Cake\View\Widget\Radio;
+use Cake\View\Widget\RadioWidget;
 use Cake\View\Form\ContextInterface;
 
 /**
@@ -20,7 +20,7 @@ use Cake\View\Form\ContextInterface;
  * This class is intended as an internal implementation detail
  * of Cake\View\Helper\FormHelper and is not intended for direct use.
  */
-class Bootstrap3Radio extends Radio {
+class Bootstrap3Radio extends RadioWidget {
 
 	public function render(array $data, ContextInterface $context) {
 		$data += [
@@ -32,7 +32,7 @@ class Bootstrap3Radio extends Radio {
 			$data['options'] = (array)$data['options'];
 		}
 		$output = '';
-		if (is_string($data['label'])&&(count($data['options']) != 1))
+		if (isset($data['label'])&&is_string($data['label'])&&(count($data['options']) != 1))
 			$output = $this->_label->render(['text' => $data['label']], $context);
 		return $output.parent::render($data, $context);
 	}
