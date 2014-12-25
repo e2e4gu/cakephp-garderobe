@@ -1,19 +1,19 @@
 {
-	"name": "iteam-pro/garderobe",
+	"name": "mindforce/garderobe",
 	"description": "CakePHP UI plugin",
-	"homepage": "http://iteam-pro.com",
+	"homepage": "http://mindforce.me",
 	"keywords": ["cakephp", "ui"],
 	"type": "cakephp-plugin",
 	"license": "MIT",
 	"authors": [
 		{
-			"name": "iTeam s.r.o.",
-			"homepage": "https://iteam-pro.com"
+			"name": "MindForce",
+			"homepage": "https://mindforce.me"
 		}
 	],
 	"support": {
-		"issues": "https://github.com/iteam-pro/garderobe/issues",
-		"source": "https://github.com/iteam-pro/garderobe"
+		"issues": "https://github.com/mindforce/garderobe/issues",
+		"source": "https://github.com/mindforce/garderobe"
 	},
 	"minimum-stability": "dev",
 	"require": {
@@ -33,5 +33,4 @@
 			"Garderobe\\Test\\": "tests"
 		}
 	}
-
 }
