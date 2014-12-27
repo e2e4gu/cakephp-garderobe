@@ -12,8 +12,8 @@
 		}
 	],
 	"support": {
-		"issues": "https://github.com/mindforce/garderobe/issues",
-		"source": "https://github.com/mindforce/garderobe"
+		"issues": "https://github.com/mindforce/cakephp-garderobe/issues",
+		"source": "https://github.com/mindforce/cakephp-garderobe"
 	},
 	"minimum-stability": "dev",
 	"require": {
