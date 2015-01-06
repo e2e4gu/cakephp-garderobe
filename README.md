@@ -11,7 +11,11 @@ composer require mindforce/cakephp-garderobe
 ```
 
 ## Available plugins to extend Garderobe core
+
 [jQuery](https://github.com/mindforce/cakephp-garderobe-jquery)
+
 [FontAwesome](https://github.com/mindforce/cakephp-garderobe-font-awesome)
+
 [Bootstrap3](https://github.com/mindforce/cakephp-garderobe-bootstrap3)
+
 ...
