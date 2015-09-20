@@ -43,7 +43,8 @@ class AssetFilter extends BaseAssetFilter {
 		$plugins = Configure::read('Garderobe.Plugin');
         foreach($plugins as $plugin){
             $pluginWebroot = Plugin::path($plugin['name']) . Configure::read('App.webroot') . DS;
-            if (preg_match("/(css|js|map|woff|woff2|ttf)$/i", $fileFragment)) {
+			$extensions = implode('|', Configure::read('Garderobe.extensions'));
+            if (preg_match("/($extensions)$/i", $fileFragment)) {
                 if(Configure::read('debug') == 0){
                     $path = $pluginWebroot . preg_replace("/(css|js)$/i", "min.$1", $fileFragment);
                     if (file_exists($path)) {
