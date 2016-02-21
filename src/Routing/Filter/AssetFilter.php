@@ -11,10 +11,12 @@
  */
 namespace Garderobe\Core\Routing\Filter;
 
-use Cake\Routing\Filter\AssetFilter as BaseAssetFilter;
+use Cake\Composer\Installer\ComponentInstallerConfigureTrait;
 use Cake\Core\Configure;
 use Cake\Core\Plugin;
-use Cake\Utility\Inflector;
+use Cake\Network\Request;
+use Cake\Network\Response;
+use Cake\Routing\Filter\AssetFilter as BaseAssetFilter;
 
 /**
  * Filters a request and tests whether it is a file in the webroot folder or not and
@@ -22,6 +24,9 @@ use Cake\Utility\Inflector;
  *
  */
 class AssetFilter extends BaseAssetFilter {
+
+	use ComponentInstallerConfigureTrait;
+
 
 /**
  * Default priority for all methods in this filter
@@ -38,24 +43,30 @@ class AssetFilter extends BaseAssetFilter {
  * @return string Absolute path for asset file
  */
 	protected function _getAssetFile($url) {
+		//Brood unload hack cause vendor plugin loaded for some reason
+		Plugin::unload('Garderobe');
+
         $parts = explode('/', $url);
+		$fileType = array_shift($parts);
 		$fileFragment = implode(DS, $parts);
-		$plugins = Configure::read('Garderobe.Plugin');
-        foreach($plugins as $plugin){
-            $pluginWebroot = Plugin::path($plugin['name']) . Configure::read('App.webroot') . DS;
-			$extensions = implode('|', Configure::read('Garderobe.extensions'));
-            if (preg_match("/($extensions)$/i", $fileFragment)) {
-                if(Configure::read('debug') == 0){
-                    $path = $pluginWebroot . preg_replace("/(css|js)$/i", "min.$1", $fileFragment);
-                    if (file_exists($path)) {
-                        return $path;
-                    }
-                }
-                $path = $pluginWebroot . $fileFragment;
-                if (file_exists($path)) {
-                    return $path;
-                }
-            }
+		$allowedExtensions = ComponentInstallerConfigureTrait::getSupportedExtensions();
+		$registeredComponents = require ROOT . DS . 'vendor' . DS . 'cakephp-components.php';
+        foreach($registeredComponents as $component){
+			$extensions = implode('|', $allowedExtensions);
+			if (preg_match("/($extensions)$/i", $fileFragment)) {
+				foreach($component as $type=>$chunk){
+					if($fileType != $type){
+						continue;
+					}
+					$path = ROOT . DS . Configure::read('App.webroot') . DS . $chunk. DS;
+					if((Configure::read('debug') == false)&&!strpos($fileFragment, 'min')){
+	                    $fileFragment =  preg_replace("/(css|js)$/i", "min.$1", $fileFragment);
+	                }
+	                if (file_exists($path. $fileFragment)) {
+						return $path.$fileFragment;
+	                }
+				}
+			}
         }
 	}
 

@@ -18,6 +18,4 @@ EventManager::instance()->attach(
     null
 );
 
-Configure::write('Garderobe.extensions', ['css', 'js', 'map', 'woff', 'woff2', 'ttf']);
-
 DispatcherFactory::add('Garderobe/Core.Asset');

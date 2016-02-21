@@ -17,9 +17,10 @@
 	},
 	"minimum-stability": "dev",
     "require": {
-        "php": ">=5.4",
+        "php": ">=5.5.9",
         "cakephp/plugin-installer": "*",
-        "cakephp/cakephp": "3.0.*"
+        "cakephp/cakephp": "~3.2",
+        "mindforce/component-installer": "~0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
