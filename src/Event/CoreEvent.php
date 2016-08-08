@@ -33,7 +33,7 @@ class CoreEvent implements EventListenerInterface {
         foreach ($plugins as $plugin){
             if (isset($plugin['helpers'])&&!empty($plugin['helpers'])){
                 foreach ($plugin['helpers'] as $helper=>$options){
-                    $controller->helpers[$helper] = $options;
+                    $controller->viewBuilder()->helpers([$helper => $options]);
                 }
             }
         }
