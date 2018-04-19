@@ -20,7 +20,7 @@ class CoreEvent implements EventListenerInterface {
 
     public function implementedEvents() {
         return array(
-	        'Controller.initialize' => array(
+            'Controller.initialize' => array(
                 'callable' => 'onControllerInit',
             ),
         );
@@ -29,7 +29,7 @@ class CoreEvent implements EventListenerInterface {
     public function onControllerInit($event) {
         $controller = $event->subject();
 
-	    $plugins = Configure::read('Garderobe.Plugin');
+        $plugins = Configure::read('Garderobe.Plugin');
         foreach ($plugins as $plugin){
             if (isset($plugin['helpers'])&&!empty($plugin['helpers'])){
                 foreach ($plugin['helpers'] as $helper=>$options){
