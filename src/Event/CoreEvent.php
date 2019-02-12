@@ -27,7 +27,7 @@ class CoreEvent implements EventListenerInterface {
     }
 
     public function onControllerInit($event) {
-        $controller = $event->subject();
+        $controller = $event->getSubject();
 
         $plugins = Configure::read('Garderobe.Plugin');
         foreach ($plugins as $plugin){

@@ -13,9 +13,3 @@ use Cake\Event\EventManager;
 use Cake\Core\Configure;
 use Cake\Routing\DispatcherFactory;
 
-EventManager::instance()->attach(
-	new Garderobe\Core\Event\CoreEvent,
-    null
-);
-
-DispatcherFactory::add('Garderobe/Core.Asset');
