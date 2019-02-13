@@ -10,11 +10,30 @@ class Plugin extends BasePlugin
 
     public function middleware($middleware)
     {
+    /*
+        $namespaces=array();
+foreach(get_declared_classes() as $name) {
+    if(preg_match_all("@[^\\\]+(?=\\\)@iU", $name, $matches)) {
+        $matches = $matches[0];
+        $parent =&$namespaces;
+        while(count($matches)) {
+            $match = array_shift($matches);
+            if(!isset($parent[$match]) && count($matches))
+                $parent[$match] = array();
+            $parent =&$parent[$match];
+
+        }
+    }
+}
+
+debug($namespaces);
+exit();
+*/
         $asset = new \Garderobe\Core\Routing\Middleware\AssetMiddleware;
-        $middleware->insertBefore(
-            'Cake\Routing\Middleware\AssetMiddleware',
-            $asset
-        );
+        //$middleware->insertBefore(
+        //    'Cake\Routing\Middleware\AssetMiddleware',
+        //    $asset
+        //);
         return $middleware;
     }
 
