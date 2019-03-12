@@ -20,8 +20,11 @@ class CoreEvent implements EventListenerInterface {
 
     public function implementedEvents() {
         return array(
-            'Controller.initialize' => array(
-                'callable' => 'onControllerInit',
+            //'Controller.initialize' => array(
+            //    'callable' => 'onControllerInit',
+            //),
+            'View.beforeLayout' => array(
+                'callable' => 'onViewBeforeLayout',
             ),
         );
     }
@@ -34,6 +37,22 @@ class CoreEvent implements EventListenerInterface {
             if (isset($plugin['helpers'])&&!empty($plugin['helpers'])){
                 foreach ($plugin['helpers'] as $helper=>$options){
                     $controller->viewBuilder()->helpers([$helper => $options]);
+                }
+            }
+        }
+    }
+
+    public function onViewBeforeLayout($event) {
+        $view = $event->getSubject();
+        $helpersRegistry = $view->helpers();
+
+        $plugins = Configure::read('Garderobe.Plugin');
+        foreach ($plugins as $plugin){
+            if (isset($plugin['helpers'])&&!empty($plugin['helpers'])){
+                foreach ($plugin['helpers'] as $helper=>$options){
+                    if(!$helpersRegistry->has($helper)){
+                        $view->loadHelper($helper, $options);
+                    }
                 }
             }
         }
