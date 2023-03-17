@@ -18,7 +18,8 @@ use Cake\Log\Log;
 
 class CoreEvent implements EventListenerInterface {
 
-    public function implementedEvents() {
+    public function implementedEvents(): array
+    {
         return array(
             //'Controller.initialize' => array(
             //    'callable' => 'onControllerInit',

@@ -4,11 +4,12 @@ namespace Garderobe\Core;
 use Cake\Core\BasePlugin;
 use Cake\Core\PluginApplicationInterface;
 use Cake\Event\EventManager;
+use Cake\Http\MiddlewareQueue;
 
 class Plugin extends BasePlugin
 {
 
-    public function middleware($middleware)
+    public function middleware($middleware): MiddlewareQueue
     {
     /*
         $namespaces=array();
@@ -37,7 +38,7 @@ exit();
         return $middleware;
     }
 
-    public function bootstrap(PluginApplicationInterface $app)
+    public function bootstrap(PluginApplicationInterface $app): void
     {
         parent::bootstrap($app);
 

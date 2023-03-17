@@ -8,7 +8,8 @@ use Cake\Utility\Inflector;
 
 class AssetMiddleware extends OriginalAssetMiddleware {
 
-	protected function _getAssetFile($url) {
+	protected function _getAssetFile(string $url): ?string
+	{
 		$parts = explode('/', $url);
 		$asset = array_shift($parts);
 		$parts[0] = $asset;
